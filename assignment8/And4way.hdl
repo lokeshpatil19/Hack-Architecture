@@ -1,0 +1,17 @@
+// And4way  Assignment-8 CS20B{007,008,047}
+
+/* 
+   Code below is And4way.
+   out=a·b·c·d
+*/
+
+CHIP And4way
+{
+    IN a, b, c, d;
+    OUT out;
+
+    PARTS:
+    And(a=a, b=b, out=p01);
+    And(a=p01, b=c, out=p02);
+    And(a=p02, b=d, out=out);
+}

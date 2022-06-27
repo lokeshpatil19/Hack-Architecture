@@ -1,0 +1,29 @@
+// CLA CS20B{007,008,047}
+
+/* 
+   Code below is Carry Look Ahead adder - CLA.
+*/
+
+CHIP CLA
+{
+    IN c, p[4], g[4];
+    OUT out[4]; // sum bits 
+
+    PARTS:
+    And(a=c, b=p[0], out=c10);
+    Or(a=c10, b=g[0], out=c1); // c1 = p[0]·c0 + g[0]
+
+    And4way(a=p[1], b=p[0], c=c, d=true, out=c20);
+    And4way(a=p[1], b=g[0], c=true, d=true, out=c21);
+    Or4way(a=c20, b=c21, c=g[1], d=false, out=c2); // c2 = p[1]·p[0]·c0 + p[1]·g[0] + g[1]
+    
+    And4way(a=p[2], b=p[1], c=p[0], d=c, out=c30);
+    And4way(a=p[2], b=p[1], c=g[0], d=true, out=c31);
+    And4way(a=p[2], b=g[1], c=true, d=true, out=c32);
+    Or4way(a=c30, b=c31, c=c32, d=g[2], out=c3); // c3 = p[2]·p[1]·p[0]·c0 + p[2]·p[1]·g[0] + p[2]·g[1] + g[2]
+    
+    Xor(a=p[0], b=c, out=out[0]);
+    Xor(a=p[1], b=c1, out=out[1]);
+    Xor(a=p[2], b=c2, out=out[2]);
+    Xor(a=p[3], b=c3, out=out[3]);
+}

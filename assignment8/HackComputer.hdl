@@ -1,0 +1,16 @@
+// HackComputer Assignment-8 CS20B{007,008,047}
+
+/*
+    Code below is for HackComputer.
+    Chips used internally : ROM32K, HackCPU, RAM64.
+*/  
+
+CHIP HackComputer
+{
+    IN reset;
+
+    PARTS:
+    ROM32K(address=PC, out=instruction); // Read Only Memory
+    HackCPU(inM=inM,instruction=instruction,reset=reset,outM=data,writeM=writeM,AddressM[0..5]=RAMaddress,pc=PC);
+    RAM64(in=data, load=writeM,address=RAMaddress,out=inM); // Random Access Memory
+} 

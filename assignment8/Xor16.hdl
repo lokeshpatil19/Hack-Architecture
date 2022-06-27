@@ -1,0 +1,29 @@
+// Xor16  Assignment-8 CS20B{007,008,047}
+
+/* 
+   Code below is Xor16.
+*/
+
+CHIP Xor16
+{
+    IN x[16], y[16];
+    OUT out[16];
+
+    PARTS:
+    Xor(a=x[0],b=y[0],out=out[0]);
+    Xor(a=x[1],b=y[1],out=out[1]);
+    Xor(a=x[2],b=y[2],out=out[2]);
+    Xor(a=x[3],b=y[3],out=out[3]);
+    Xor(a=x[4],b=y[4],out=out[4]);
+    Xor(a=x[5],b=y[5],out=out[5]);
+    Xor(a=x[6],b=y[6],out=out[6]);
+    Xor(a=x[7],b=y[7],out=out[7]);
+    Xor(a=x[8],b=y[8],out=out[8]);
+    Xor(a=x[9],b=y[9],out=out[9]);
+    Xor(a=x[10],b=y[10],out=out[10]);
+    Xor(a=x[11],b=y[11],out=out[11]);
+    Xor(a=x[12],b=y[12],out=out[12]);
+    Xor(a=x[13],b=y[13],out=out[13]);
+    Xor(a=x[14],b=y[14],out=out[14]);
+    Xor(a=x[15],b=y[15],out=out[15]);
+}

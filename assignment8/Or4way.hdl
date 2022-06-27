@@ -1,0 +1,17 @@
+// Or4way  Assignment-8 CS20B{007,008,047}
+
+/* 
+   Code below is Or4way.
+   out = a + b + c + d
+*/
+
+CHIP Or4way
+{
+    IN a,b,c,d;
+    OUT out;
+
+    PARTS:
+    Or(a=a,b=b,out=p01);
+    Or(a=p01,b=c,out=p02);
+    Or(a=p02,b=d,out=out);
+}

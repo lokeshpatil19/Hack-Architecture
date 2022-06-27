@@ -1,0 +1,11 @@
+@a
+D=M
+@b
+D=D+M
+@c
+D=D-M
+@d
+M=D
+(END_PROGRAM)
+@END_PROGRAM
+0;JMP

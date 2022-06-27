@@ -1,0 +1,18 @@
+// HigherorderP  Assignment-8 CS20B{007,008,047}
+
+/* 
+   Code below is HigherorderP.
+   Generates higher order p terms.
+*/
+
+CHIP HigherorderP
+{
+    IN in[16];
+    OUT out[4];
+
+    PARTS:
+    And4way(a=in[0], b=in[1], c=in[2], d=in[3],out=out[0]); // hp[0] = p[0]·p[1]·p[2]·p[3]
+    And4way(a=in[4], b=in[5], c=in[6], d=in[7],out=out[1]); // hp[1] = p[4]·p[5]·p[6]·p[7]
+    And4way(a=in[8], b=in[9], c=in[10], d=in[11],out=out[2]); // hp[2] = p[8]·p[9]·p[10]·p[11]
+    And4way(a=in[12], b=in[13], c=in[14], d=in[15],out=out[3]); // hp[3] = p[12]·p[13]·p[14]·p[15]
+}

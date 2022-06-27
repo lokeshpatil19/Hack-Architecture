@@ -1,0 +1,16 @@
+// Bit1register Assignment-8 CS20B{007,008,047}
+
+/*
+    Code below is for Bit1register.
+    Chips used internally : .
+*/  
+
+CHIP Bit1register
+{
+    IN in, load;
+    OUT out;
+
+    PARTS:
+    Mux1bit2to1(in0=DFFout,in1=in,s=load,out=DFFin);
+    DFF(in=DFFin,out=DFFout,out=out);
+} 

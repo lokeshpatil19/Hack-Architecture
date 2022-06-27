@@ -1,0 +1,31 @@
+// HackCPU Assignment-8 CS20B{007,008,047}
+
+/*
+    Code below is for HackCPU.
+    Chips used internally : InstructionDecoder, Mux16bit2to1, Register, HackALU, JumpDetector, PC.
+*/  
+
+CHIP HackCPU
+{
+    IN inM[16], instruction[16], reset;
+    OUT outM[16], writeM, AddressM[15], pc[15];
+
+    PARTS:
+    InstructionDecoder(in=instruction,zx=zx,nx=nx,zy=zy,ny=ny,f=f,no=no,writeA=writeA,writeM=writeM,writeD=writeD,jump=jump); //instruction decoder - generation of control signals
+    
+    Not(in=instruction[15],out=notin15); // select line for mux1
+    Mux16bit2to1(in0=ALUout,in1=instruction,s=notin15,out=dataA); //MUX1
+    
+    Register(in=dataA, load=writeA, out=dataPC, out=dataAMux2,out[0..14]=AddressM); // Register A
+    
+    And(a=instruction[15],b=instruction[12],out=smux2); // select line for mux2
+    Mux16bit2to1(in0=dataAMux2,in1=inM,s=smux2,out=yALU); //MUX2
+
+    Register(in=ALUout, load=writeD, out=xALU); // Register D
+    
+    HackALU(x=xALU, y=yALU, zx=zx, nx=nx, zy=zy, ny=ny, f=f, no=no, out=ALUout, out=outM,zr=zr, ng=ng);
+    
+    JumpDetector(jump=jump, zr=zr, ng=ng, j=j);    
+
+    PC(in=dataPC,reset=reset,j=j,out[0..14]=pc); // Program Counter
+} 

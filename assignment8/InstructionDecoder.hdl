@@ -1,0 +1,39 @@
+// InstructionDecoder Assignment-8 CS20B{007,008,047}
+
+/*
+    Code below is for InstructionDecoder.
+    Chips used internally : .
+*/  
+
+CHIP InstructionDecoder
+{
+    IN in[16];
+    OUT zx, nx, zy, ny, f, no, writeA, writeD, writeM,jump[8];
+
+    PARTS:
+    And(a=in[15],b=in[11],out=zx);
+    And(a=in[15],b=in[10],out=nx);
+    And(a=in[15],b=in[9],out=zy);
+    And(a=in[15],b=in[8],out=ny);
+    And(a=in[15],b=in[7],out=f);
+    And(a=in[15],b=in[6],out=no);
+
+    And(a=in[15],b=in[3],out=writeM);
+    And(a=in[15],b=in[4],out=writeD);
+    And(a=in[15],b=in[5],out=writeA0);
+    Not(in=in[15],out=notin15);
+    Or(a=notin15,b=writeA0,out=writeA);
+    
+    Not(in=in[0],out=notI0);
+    Not(in=in[1],out=notI1);
+    Not(in=in[2],out=notI2);
+
+    And4way(a=in[15],b=in[2],c=in[1],d=in[0],out=jump[7]);
+    And4way(a=in[15],b=notI2,c=notI1,d=in[0],out=jump[1]);
+    And4way(a=in[15],b=notI2,c=in[1],d=notI0,out=jump[2]);
+    And4way(a=in[15],b=notI2,c=in[1],d=in[0],out=jump[3]);
+    And4way(a=in[15],b=in[2],c=notI1,d=notI0,out=jump[4]);
+    And4way(a=in[15],b=in[2],c=notI1,d=in[0],out=jump[5]);
+    And4way(a=in[15],b=in[2],c=in[1],d=notI0,out=jump[6]);
+    Not(in=true,out=jump[0]);
+} 

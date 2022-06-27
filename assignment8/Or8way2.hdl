@@ -1,0 +1,17 @@
+// Or8way2 Assignment-8 CS20B{007,008,047}
+
+/*
+  Code below is of Or8way2.
+*/
+
+CHIP Or8way2
+{
+    IN a,b,c,d,e,f,g,h;
+    OUT out;
+
+    PARTS:
+    Or4way(a=a,b=b,c=c,d=d,out=out1);
+    Or4way(a=e,b=f,c=g,d=h,out=out2);
+    Or(a=out1,b=out2,out=out);
+    
+}

@@ -1,0 +1,19 @@
+// CLA4bit16adder CS20B{007,008,047}
+
+/* 
+   Code below is CLA4bit16adder.
+   4-bit CLA based 16-bit adder. 
+*/
+
+CHIP CLA4bit16adder
+{
+    IN c0, c4, c8, c12, p[16], g[16];
+    OUT out[16];//sum bits 
+
+    PARTS:
+    
+    CLA(c=c0, p=p[0..3], g=g[0..3], out=out[0..3]);
+    CLA(c=c4, p=p[4..7], g=g[4..7], out=out[4..7]);
+    CLA(c=c8, p=p[8..11], g=g[8..11], out=out[8..11]);
+    CLA(c=c12, p=p[12..15], g=g[12..15], out=out[12..15]);
+}

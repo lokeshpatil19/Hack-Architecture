@@ -1,0 +1,25 @@
+// JumpDetector Assignment-8 CS20B{007,008,047}
+
+/*
+    Code below is for JumpDetector.
+    Chips used internally : .
+*/  
+
+CHIP JumpDetector
+{
+    IN jump[8],zr,ng;
+    OUT j;
+
+    PARTS:   
+    Not(in=zr,out=notzr);
+    Not(in=ng,out=notng);
+
+    And4way(a=jump[1],b=notzr,c=notng,d=true,out=JGT);
+    And4way(a=jump[2],b=zr,c=true,d=true,out=JEQ);
+    And4way(a=jump[3],b=true,c=notng,d=true,out=JGE);
+    And4way(a=jump[4],b=notzr,c=ng,d=true,out=JLT);
+    And4way(a=jump[5],b=notzr,c=true,d=true,out=JNE);
+    And4way(a=jump[6],b=true,c=ng,d=true,out=JLE);
+ 
+    Or8way2(a=jump[0], b=JGT, c=JEQ, d=JGE, e=JLT, f=JNE, g=JLE, h=jump[7], out=j);   
+} 

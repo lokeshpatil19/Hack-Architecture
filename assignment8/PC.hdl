@@ -1,0 +1,17 @@
+// PC Assignment-8 CS20B{007,008,047}
+
+/*
+    Code below is for PC.
+    Chips used internally : .
+*/  
+
+CHIP PC
+{
+    IN in[16],reset,j;
+    OUT out[16];
+
+    PARTS:
+    MuxPC(in0=AdderOUT,in1=in,in2=false,in3=false,s0=j,s1=reset,out=PCin);
+    Register(in=PCin,load=true,out=PCout,out=out);
+    bitCLAHigher16(x=PCout,y[0]=true,y[1..15]=false,s=AdderOUT);
+} 

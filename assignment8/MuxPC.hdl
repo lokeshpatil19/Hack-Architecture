@@ -1,0 +1,28 @@
+//  Mux4to1 Assignment-8 CS20B{007,008,047}
+
+/* 
+   Code below is logic gate circuit for Mux16bit4to1.
+*/
+
+CHIP MuxPC
+{
+    IN in0[16], in1[16], in2[16], in3[16], s0, s1;
+    OUT out[16];
+    PARTS:
+
+    Not(in=s0,out=s0not);
+    Not(in=s1,out=s1not);
+    And(a=s0not,b=s1not,out=s0nots1not);
+    And(a=s1not,b=s0,out=s1nots0);
+    And(a=s1,b=s0not,out=s0nots1);
+    And(a=s1,b=s0,out=s1s0);
+  
+    And16with1(x=in0,mul=s0nots1not,out=out0);
+    And16with1(x=in1,mul=s1nots0,out=out1);
+    And16with1(x=in2,mul=s0nots1,out=out2);
+    And16with1(x=in3,mul=s1s0,out=out3); 
+
+    Or16(x=out0,y=out1,out=out01);
+    Or16(x=out01,y=out2,out=out012); 
+    Or16(x=out012,y=out3,out=out);
+}

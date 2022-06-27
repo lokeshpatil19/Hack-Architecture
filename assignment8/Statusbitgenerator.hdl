@@ -1,0 +1,20 @@
+// Statusbitgenerator  Assignment-8 CS20B{007,008,047}
+
+/* 
+   Code below is Statusbitgenerator.
+*/
+
+CHIP Statusbitgenerator
+{
+    IN out[16];
+    OUT zr, ng;
+
+    PARTS:
+    And(a=out[15], b=true, out=ng); // ng=out[15]
+    Or4way(a=out[0], b=out[1], c=out[2], d=out[3], out=p03);
+    Or4way(a=out[4], b=out[5], c=out[6], d=out[7], out=p47);
+    Or4way(a=out[8], b=out[9], c=out[10], d=out[11], out=p811);
+    Or4way(a=out[12], b=out[13], c=out[14], d=out[15], out=p1215);
+    Or4way(a=p03, b=p47, c=p811, d=p1215, out=notzr);
+    Not(in=notzr, out=zr); // zr=1 when out=0, zr=0 otherwise 
+}

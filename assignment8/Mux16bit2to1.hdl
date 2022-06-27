@@ -1,0 +1,18 @@
+// Mux16bit2to1 Assignment-8 CS20B{007,008,047}
+
+/* 
+   Code below is Mux16bit2to1
+*/
+
+CHIP Mux16bit2to1
+{
+    IN in0[16], in1[16], s;
+    OUT out[16];
+
+    PARTS:
+    Not(in=s, out=snot);
+  
+    And16with1(x=in0, mul=snot, out=out0);
+    And16with1(x=in1, mul=s, out=out1);
+    Or16(x=out0, y=out1, out=out);
+}

@@ -1,0 +1,24 @@
+//  bitCLAHigher16 Assignment-8 CS20B{007,008,047}
+
+/*
+  Code below is of bitCLAHigher16.
+*/
+
+CHIP bitCLAHigher16
+{
+    IN x[16], y[16];
+    OUT s[16];
+
+    PARTS:
+
+    Xor16(x=x, y=y, out=p);// p[i] = x[i]⊕y[i] 
+    And16(x=x, y=y, out=g);// g[i] = x[i]·y[i]
+
+    HigherorderP(in=p, out=hp);// higher order p terms 
+    HigherorderG(p=p, g=g, out=hg);// higher order g terms 
+ 
+    Or(a=false, b=false, out=c0);
+
+    Carrybits(hp=hp, p=p, hg=hg, g=g, c0=c0, c16=c16, c12=c12, c8=c8, c4=c4, c15=c15);
+    CLA4bit16adder(c0=c0, c4=c4, c8=c8, c12=c12, p=p, g=g, out=s);// sum bits 
+}

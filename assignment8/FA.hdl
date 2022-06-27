@@ -1,0 +1,20 @@
+//  Full Adder CS20B{007,008,047}
+
+/*
+  Code below is of Full Adder(FA).
+*/
+
+CHIP FA                    
+{
+    IN a, b, Ci;
+    OUT s, Cii;
+
+    PARTS:
+    Xor (a=a, b=b, out=A);    // A =a⊕b 
+    Xor (a=A, b=Ci, out=s);   // s =a⊕b⊕Ci 
+    And (a=a, b=b, out=P);    // P = ab
+    And (a=a, b=Ci, out=Q);   // Q = aCi
+    And (a=b, b=Ci, out=R);   // R = bCi
+    Or (a=P, b=Q, out=PQ);    // PQ = ab + aCi
+    Or (a=PQ, b=R, out=Cii);  // Cii = ab + aCi + bCi
+}

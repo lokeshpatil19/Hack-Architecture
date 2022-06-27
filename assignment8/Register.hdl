@@ -1,0 +1,30 @@
+// Register Assignment-8 CS20B{007,008,047}
+
+/*
+    Code below is for Register.
+    Chips used internally : .
+*/  
+
+CHIP Register
+{
+    IN in[16], load;
+    OUT out[16];
+
+    PARTS:
+    Bit1register(in=in[0],load=load,out=out[0]);
+    Bit1register(in=in[1],load=load,out=out[1]);
+    Bit1register(in=in[2],load=load,out=out[2]);
+    Bit1register(in=in[3],load=load,out=out[3]);
+    Bit1register(in=in[4],load=load,out=out[4]);
+    Bit1register(in=in[5],load=load,out=out[5]);
+    Bit1register(in=in[6],load=load,out=out[6]);
+    Bit1register(in=in[7],load=load,out=out[7]);
+    Bit1register(in=in[8],load=load,out=out[8]);
+    Bit1register(in=in[9],load=load,out=out[9]);
+    Bit1register(in=in[10],load=load,out=out[10]);
+    Bit1register(in=in[11],load=load,out=out[11]);
+    Bit1register(in=in[12],load=load,out=out[12]);
+    Bit1register(in=in[13],load=load,out=out[13]);
+    Bit1register(in=in[14],load=load,out=out[14]);
+    Bit1register(in=in[15],load=load,out=out[15]);
+} 

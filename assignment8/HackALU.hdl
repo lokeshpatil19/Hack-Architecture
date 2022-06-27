@@ -1,0 +1,29 @@
+// HackALU Assignment-8 CS20B{007,008,047}
+
+/*
+    Code below is for 16 bit HackALU.
+    Chips used internally : Generatezero, Mux16bit2to1, Statusbitgenerator, bitCLAHigher16.
+*/  
+
+CHIP HackALU
+{
+    IN x[16], y[16], zx, nx, zy, ny, f, no;
+    OUT out[16], zr, ng;
+
+    PARTS:
+    Generatezero(in=false, out=zero); // generating zero
+
+    Mux16bit2to1(in0=x, in1=zero, s=zx, out=outx);
+    Mux16bit2to1(in0=y, in1=zero, s=zy, out=outy);
+
+    Xor16with1(x=outx, y=nx, out=p);
+    Xor16with1(x=outy, y=ny, out=q);
+
+    bitCLAHigher16(x=p, y=q, s=pplusq); // 16 bit adder (CLA based on higher order terms) 
+    And16(x=p, y=q, out=pandq);
+
+    Mux16bit2to1(in0=pandq, in1=pplusq, s=f, out=r);
+    Xor16with1(x=r, y=no, out=out0);
+    Statusbitgenerator(out=out0, zr=zr, ng=ng); // generate status bits zr and ng
+    And16(x=out0, y=out0, out=out); // final output
+} 
